@@ -1,0 +1,266 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <title>Créer un cv</title>
+ <style>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.form-group {
+  flex-basis: calc(50% - 20px);
+  margin: 0 10px 20px 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+.progress-bar {
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  height: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #007bff;
+  height: 100%;
+  transition: width 0.5s;
+}
+
+.photo-upload {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.photo-upload input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.photo-upload label {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+.photo-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin: 20px auto;
+  display: block;
+  border: 5px solid #fff;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+}
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-button label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-button label:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-button input:checked + label {
+  background-color: #0081FF;
+}
+
+.toggle-button input:checked + label:after {
+  transform: translateX(26px);
+}
+
+.hidden {
+  display: none;
+}
+
+
+</style>
+
+<div class="container">
+  <form>
+    <h2>Informations personnelles</h2>
+    <div class="progress-bar">
+    <div class="progress" id="progress" style="width: 0;"></div>
+  </div>
+  
+    <div class="photo-upload">
+      <label >Ajouter une photo</label>
+      <input type="file" id="photo" name="photo">
+       <img class="photo-preview" src="https://avatars.servers.getgo.com/emails/%7B0%7D/medium.jpg" alt="Aperçu de la photo">
+    </div>
+    
+<script>
+  const photoInput = document.getElementById("photo");
+  const photoPreview = document.querySelector(".photo-preview");
+
+  photoInput.addEventListener("change", function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener("load", function() {
+        photoPreview.src = this.result;
+      });
+      reader.readAsDataURL(file);
+    }
+  });
+  
+</script>
+<form method="post" action="{{ path('cv_generate_pdf') }}">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFirstName">Prénom</label>
+            <input type="text" class="form-control" id="inputFirstName" name="firstName">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLastName">Nom</label>
+            <input type="text" class="form-control" id="inputLastName" name="lastName">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="telephone">Téléphone:</label>
+            <input type="tel" class="form-control" id="telephone" name="telephone">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="codepostal">Code postal:</label>
+            <input type="text" class="form-control" id="codepostal" name="codePostal">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="ville">Ville:</label>
+            <input type="text" class="form-control" id="ville" name="ville">
+        </div>
+    </div>
+    <div class="toggle-button">
+        <input type="checkbox" id="toggle" />
+        <label for="toggle">
+        </label>
+    </div>
+
+    <div id="toggle-content" class="hidden">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="age">Age ou Date de naissance</label>
+                <input type="text" class="form-control" id="age" name="age">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="situation">Situation familiale</label>
+                <input type="text" class="form-control" id="situation" name="situationFamiliale">
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Continuer</button>
+</form>
+  <script>
+  const toggleBtn = document.querySelector('#toggle');
+  const toggleContent = document.querySelector('#toggle-content');
+
+  toggleBtn.addEventListener('click', () => {
+    toggleContent.classList.toggle('hidden');
+    toggleBtn.textContent = toggleBtn.checked ? 'Masquer les informations' : 'Afficher plus d\'informations';
+  });
+const progressBar = document.getElementById("progress");
+const continueButton = document.querySelector("button[type='submit']");
+
+continueButton.addEventListener("click", function() {
+  progressBar.style.width = parseInt(progressBar.style.width) + 20 + "%";
+
+  // Rediriger vers une nouvelle page si la barre de progression est complète
+  if (parseInt(progressBar.style.width) === 100) {
+    window.location.href = "nouvelle-page.html";
+  }
+});
+
+</script>
+  
+</div>
+<button type="submit">Générer le PDF</button>
+</form>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle offre d'emploi ajoutée</title>
+  <style type="text/css">
+    /* Container */
+    .container {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    /* Heading */
+    h1 {
+        margin-top: 0;
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Paragraph */
+    p {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    /* Unordered List */
+    ul {
+        list-style: disc;
+        margin-top: 0;
+        margin-bottom: 1em;
+        padding-left: 20px;
+    }
+
+    /* List Item */
+    li {
+        margin-bottom: 0.5em;
+    }
+
+    /* Signature */
+    .signature {
+        margin-top: 2em;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Bonjour,</h1>
+          <img src="https://cdn-icons-png.flaticon.com/512/6158/6158118.png" alt="Image de bienvenue" style="display: block; margin: auto; width: 50%;">
+
+        <p>Une nouvelle offre a été ajoutée. Veuillez la traiter dès que possible:</p>
+        <ul>
+            <li>Titre : {{ offre.titre }}</li>
+            <li>Description : {{ offre.description }}</li>
+            <li>Date de publication : {{ offre.dc|date('d/m/Y') }}</li>
+        </ul>
+
+        <p>Cordialement,<br>L'équipe de Jobtopia.</p>
+    </div>
+</body>
+</html>

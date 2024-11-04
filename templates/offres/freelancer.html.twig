@@ -1,0 +1,78 @@
+{% extends 'free.html.twig' %}
+
+{% block content %}
+<style>
+{% block stylesheets %}
+  {{ parent() }}
+  
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+.card-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+.card-title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+
+
+</style>
+
+    <div class="col-md-6">
+      <div class="card-group">
+        <div class="card">
+         <a href="{{ path('showDispoOffres') }}">
+              <img src="{{ asset('Images/emploi.jpeg') }}" class="card-img-top" alt="...">
+            </a>
+     
+            <h5 class="card-title">Rechercher un emploi</h5>
+            <p class="card-text">Trouvez les meilleurs postes de travail.</p>
+       
+        </div>
+        <div class="card">
+          <img src="{{ asset('Images/cv.PNG') }}" class="card-img-top" alt="...">
+         
+            <h5 class="card-title">Créer un CV</h5>
+            <p class="card-text">Trouvez une solution pour créer un CV.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

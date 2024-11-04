@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Créer un cv</title>
+	<!-- Inclure les fichiers CSS et JS de Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+	<h1>Créer un cv</h1>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Ouvrir la modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Créer votre CV</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" id="adresse" name="adresse" required>
+                    </div>
+                </form>
+            </div>
+           <div class="modal-footer">
+    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+    <button id="enregistrer-btn" type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+</div>
+
+<script>
+    var form = document.querySelector('form');
+    var progressBar = document.querySelector('.progress-bar');
+    var enregistrerBtn = document.getElementById('enregistrer-btn');
+    var closeButton = document.querySelector('#close');
+    
+    closeButton.addEventListener('click', function(event) {
+        form.reset();
+        progressBar.style.width = '0%';
+        progressBar.setAttribute('aria-valuenow', '0');
+    });
+    
+    enregistrerBtn.addEventListener('click', function(event) {
+        var fields = form.querySelectorAll('input[required]');
+        var completedFields = form.querySelectorAll('input[required]:valid');
+        var percentComplete = (completedFields.length / fields.length) * 100;
+
+        progressBar.style.width = percentComplete + '%';
+        progressBar.setAttribute('aria-valuenow', percentComplete);
+    });
+</script>
+
+</body>
+</html>

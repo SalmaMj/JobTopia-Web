@@ -1,0 +1,311 @@
+
+{% extends 'base.html.twig' %}
+{% block header %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+     <title>{% block title %}Ajouter Offre{% endblock %}</title>
+{% block javascripts %}
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('css/bootstrap.min.js') }}"></script>
+     <script src="{{ asset('main.js') }}"></script>
+   <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/<58lrsccgyg0hdd0u5g05igur5p77hsxah78zi08he4y7ss4s>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<!-- jQuery UI -->
+<!-- Configuration de l'éditeur TinyMCE -->
+ {{ parent() }}
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<script>
+tinymce.init({
+    selector: '#{{ form.description.vars.id }}',
+    plugins: 'lists link image',
+    toolbar: 'undo redo | bold italic underline strikethrough | numlist bullist | link image',
+    menubar: false,
+    extended_valid_elements: '*[*]'
+});
+ $(document).ready(function() {
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: "-100:+0",
+   
+    beforeShow: function(input, inst) {
+      $(inst.dpDiv).addClass("animate__animated animate__fadeIn"); 
+    }
+  });
+  });
+
+    function submitForm() {
+    alert("Votre offre va être traitée par l'administrateur.");
+    document.getElementById("create-form").submit();
+}
+</script>
+{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+       <link rel="stylesheet" href="{{ asset('style.css') }}">
+
+  
+<style>
+    .is-invalid {
+        border-color: red;
+        transition: border-color 0.10s ease-in-out;
+    }
+    .animated {
+          animation-duration: 0.8s;
+          transition: transform 0.5s ease-in-out;
+    }
+    .shake {
+        animation-name: shake;
+    }
+    @keyframes shake {
+        0% {
+            transform: translate(0, 0);
+        }
+        20% {
+            transform: translate(-10px, 0);
+        }
+        40% {
+            transform: translate(10px, 0);
+        }
+        60% {
+            transform: translate(-10px, 0);
+        }
+        80% {
+            transform: translate(10px, 0);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+.container {
+    margin-top: 20px;
+  }
+  
+  .card-header {
+ 
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px;
+  }
+  
+  .card {
+    border: none;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    margin-top: 30px;
+    padding: 25px;
+  }
+  
+  .form-control {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #002147;
+  }
+  
+  .form-control::placeholder {
+    color: #bbb;
+  }
+  
+  .btn-primary {
+    background-color: #002147;
+    border-color: #002147;
+    margin-top: 30px;
+    font-size: 24px;
+    padding: 15px 40px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1b2530;
+    border-color: #1b2530;
+  }
+  .form button[type="submit"] {
+    background-color: #0d0238;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+.form-dl {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .btn-animation {
+    animation: none;
+    transition: transform 0.8s ease;
+    background-color: #0d0238;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.btn-animation:hover {
+    animation: pulse 1s infinite;
+    background-color: #A1C7E0;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+</style>
+
+{% endblock %}
+
+</head>
+<body>
+{% block body %}
+  <div class="row justify-content-center h-100">
+    <div class="col-md-7">
+      <div class="card h-100">
+  
+        <div class="card-header">
+          <h1 class="text-center">Créer une offre</h1>
+        </div>   
+        <div class="card">
+        {% if form_errors(form) %}
+    <div class="alert alert-danger">
+        {{ form_errors(form) }}
+    </div>  
+    {% endif %}
+            {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': ''}}) }}
+           
+                <div class="form-floating mb-3">
+                  {{ form_widget(form.titre, {'attr': {'class': 'form-control' ~ (form.titre.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'Titre', 'onchange': 'removeErrorClass(this)'}}) }}
+                  <label for="{{ form.titre.vars.id }}">Titre de l'offre</label>
+                  {{ form_errors(form.titre, {'attr': {'class': 'invalid-feedback'}}) }}
+              </div>
+              <div class="col-12 ">
+               {{ form_label(form.description, 'Description de l\'offre') }}
+             <div class="form-floating mb-3">
+              {{ form_widget(form.description, {'attr': {'class': 'tinymce form-control' ~ (form.description.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'Description de l\'offre', 'style': 'height: 150px'}})|raw }}
+              <label for="{{ form.description.vars.id }}">Description de l'offre</label>
+              {{ form_errors(form.description, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+              <div class="col-12">
+                <label for="logoPath" class="custom-file-upload">Choisir une image</label>
+               {{ form_widget(form.logoPath, {'id': 'logoPath', 'attr': {'class': 'form-control', 'accept': 'image/*'}}) }}
+
+                    {{ form_errors(form.logoPath) }}
+                </div>
+             <div class="col-12">
+                {{ form_label(form.dl, 'Date limite') }}
+                {{ form_widget(form.dl, {'attr': {'class': 'form-control datepicker' ~ (form.dl.vars.errors|length ? ' is-invalid animated shake' : '')}}) }}
+                {{ form_errors(form.dl) }}
+            </div>
+      <div class="col-12">
+                    {{ form_widget(form.categorie, {'attr': {'class': 'form-control'~ (form.categorie.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'choisie une catégorie'}}) }}
+                    {{ form_errors(form.categorie, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>          
+              <div class="col-12">
+                    <div class="form-floating mb-3">
+                    {{ form_widget(form.clientid, {'attr': {'class': 'form-control'~ (form.clientid.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'clientid'}}) }}
+                    <label for="{{ form.clientid.vars.id }}">clientid</label>
+                    {{ form_errors(form.clientid, {'attr': {'class': 'invalid-feedback'}}) }}
+                  </div>
+            </div>
+             <div class="d-flex justify-content-end">
+                    <div class="form-check text-end">
+                      <input class="form-check-input" type="checkbox" value="" id="checkboxId">
+                      <label class="form-check-label" for="checkboxId">
+                        Afficher les compétences
+                      </label>
+                    </div>
+                  </div>
+                    <div id="skills-container">
+                    <div class="col-12">
+                 <div class="form-floating mb-3">
+                    {{ form_widget(form.skill1, {'attr': {'class': 'form-control'~ (form.skill1.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'Compétence1...'}}) }}
+                    <label for="{{ form.skill1.vars.id }}">Compétence1</label>
+                    {{ form_errors(form.skill1, {'attr': {'class': 'invalid-feedback'}}) }}
+                  </div>
+                    <div class="col-12">
+                     <div class="form-floating mb-3">
+                    {{ form_widget(form.skill2, {'attr': {'class': 'form-control'~ (form.skill2.vars.errors|length ? ' is-invalid animated shake' : ''), 'placeholder': 'Compétence2...'}}) }}
+                    <label for="{{ form.skill2.vars.id }}">Compétence2</label>
+                    {{ form_errors(form.skill2, {'attr': {'class': 'invalid-feedback'}}) }}
+                  </div>
+                    <div class="col-12">
+                     <div class="form-floating mb-3">
+                    {{ form_widget(form.skill3, {'attr': {'class': 'form-control'~ (form.skill3.vars.errors|length ? ' is-invalid animated shake' : ''),'placeholder': 'Compétence3...'}}) }}
+                    <label for="{{ form.skill3.vars.id }}">Compétence3</label>
+                    {{ form_errors(form.skill3, {'attr': {'class': 'invalid-feedback'}}) }}
+                  </div>
+                </div>
+                </div>
+            <div class="d-flex justify-content-center align-items-center">
+          <button type="submit" class="btn-animation" id="create-form-submit" onclick="submitForm()" data-bs-toggle="modal" data-bs-target="#myModal">Créer</button>
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Offre EN_ATTENTE <i class="uil-comment-question"></i></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Vous allez attendez l'acceptation de l'offre par l'admin.
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    {{ form_end(form) }}
+        </div>
+    </div>
+      </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
+</body>
+</html>
+{% endblock %}

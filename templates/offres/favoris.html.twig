@@ -1,0 +1,85 @@
+{% extends 'Free.html.twig' %}
+
+{% block body %}
+
+{% block stylesheets %}
+ {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+<style>
+h1 {
+    text-align: center;
+  }
+  .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
+{% endblock %}
+
+    <h1 text>Mes favoris</h1>
+    {% if favorites is empty %}
+        <p>Aucune offre sauvegardée pour le moment.</p>
+    {% else %}
+        <ul>
+            {% for favorite in favorites %}
+            
+            <a href="{{ path('offres_free_show', {'offre': favorite.offre.id})}}">           
+                      <div class="card mx-auto text-center mb-3 mt-5" style="max-width: 700px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('Images/' ~ favorite.offre.logoPath) }}" class="card-img" alt="Offre image"></a>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                              <h5 class="card-header d-flex justify-content-between align-items-center">
+  <span>{{ favorite.offre.titre }}</span>
+</h5> 
+
+
+                                            <p class="card-text"><strong>Description:</strong> {{ favorite.offre.description|slice(0, 20) ~ '...'  }}</p>
+                                            <p class="card-text"><strong>Date limite :</strong> {{ favorite.offre.dl|date('d/m/Y') }}</p>
+
+                            <p class="card-text">
+                       
+                        <small class="text-muted">postulé il y'a {{ favorite.offre.getDaysSinceCreated() }}</small>
+                          </p>   
+                      
+
+<button type="button"  class="btn btn-danger ml-2"  onclick="sauvegarderOffre({{ favorite.offre.id }}, true)">
+    Annuler la sauvegarde <i class="fas fa-times"></i> 
+</button>
+<script>
+ function sauvegarderOffre(idOffre, remove) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', `/${idOffre}/savedOffres`, true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      if (remove) {
+        alert('Offre retirée de vos favoris!');
+        
+      } 
+    } else {
+      alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+    }
+  };
+  xhr.send('id=' + idOffre + '&remove=' + remove);
+}
+
+</script>
+
+                    
+                              </div>
+                            </div>
+                          </div>
+                        </div>   
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'back.html.twig' %}
+
+ {% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+ <style>
+ .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:10px;
+  margin-right:200px;
+}
+</style>
+        {% endblock %}
+
+    
+        {% block content %}
+        <!-- Le contenu principal de votre page -->
+<div class="col-md-10">
+    {% if message is defined %}
+        <p>{{ message }}</p>
+    {% else %}
+        <table class="table table-bordered small-table" style="height: 50%;">
+            <thead>
+                <tr>
+                    <th>ID de L'offre</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date Création</th>
+                    <th>Date Limite</th>
+                    <th>Catégorie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for offre in offre %}
+                    {% if offre.statut == 'EN_ATTENTE' %}
+                        <tr>  
+                            <td>{{ offre.id }}</td>
+                            <td>{{ offre.titre }}</td>
+                            <td>{{ offre.description }}</td>
+                            <td>{{ offre.dc|date('d/m/Y') }}</td>
+                            <td>{{ offre.dl|date('d/m/Y') }}</td>
+                            <td>{{ offre.categorie }}</td>
+                            <td>
+                                {% if offre.statut == 'EN_ATTENTE' %}
+                                    <a href="{{ path('offres_accepter', {'id': offre.id}) }}" class="btn btn-success"><i class="far fa-check-circle"></i></a>
+                                    <a href="{{ path('offres_refuser', {'id': offre.id}) }}" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    {% endif %}
+</div>
+
+        {% endblock %}
+   
+

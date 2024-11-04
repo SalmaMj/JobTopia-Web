@@ -1,0 +1,7 @@
+{% block body %}
+    <form method="post" action="{{ path('notification_delete', {'id': notification.id}) }}" id="delete-form">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ notification.id) }}">
+        
+    </form>
+  
+{% endblock %}

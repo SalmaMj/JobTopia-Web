@@ -1,0 +1,14 @@
+{% block body %}
+    <form method="post" action="{{ path('offre_delete', {'id': offre.id}) }}" id="delete-form">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre.id) }}">
+        <button class="btn btn-danger" type="submit">Supprimer</button>
+    </form>
+    <script>
+        document.getElementById('delete-form').addEventListener('submit', function(event) {
+            var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette offre ?");
+            if (!confirmation) {
+                event.preventDefault();
+            }
+        });
+    </script>
+{% endblock %}

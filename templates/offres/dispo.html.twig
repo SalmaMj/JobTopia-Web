@@ -1,0 +1,410 @@
+{% extends 'free.html.twig' %}
+{% block title %}Offres Disponibles{% endblock %}
+{% block body %}
+
+{% block stylesheets %}
+ {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <style>
+  h1 {
+    text-align: center;
+  }
+ 
+.card {
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+.card-img{
+   width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+
+.search-container {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.search-container input {
+  margin: 10px;
+}
+
+
+.search-field input[type="text"] {
+  height: 50px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  box-shadow: none;
+  flex-grow: 1;
+}
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.search-filters label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.parent-element {
+  display: flex;
+}
+
+.search-form {
+  background-color: #f6f6f6;
+  border-radius: 0;
+  border: 1px solid #ddd;
+  flex-grow: 1; 
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-field input[type="text"] {
+  height: 50px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  box-shadow: none;
+  flex-grow: 1;
+}
+.search-field input[type="search"] {
+  height: 50px;
+  width: 600px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #555;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+.search-field input[type="search"]::placeholder {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.search-field input[type="search"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.search-filters label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.search-filters select {
+  height: 50px;
+  width: 70%;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #555;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  box-shadow: none;
+  flex-grow: 1;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right:550px
+}
+
+.search-filters select:hover,
+.search-filters select:focus {
+  outline: none;
+  border: 1px solid #007bff;
+}
+.form-check-input:checked {
+    background: linear-gradient(to bottom, #ffffff, #A1C7E0);
+    border-color: #0477BF;
+}
+@media only screen and (max-width: 768px) {
+  .search-field {
+    flex-wrap: wrap;
+  }
+  .search-field input[type="text"] {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .search-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search-filters select {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.search-filters select:hover,
+.search-filters select:focus {
+  outline: none;
+  border: 1px solid #007bff;
+}
+
+@media only screen and (max-width: 768px) {
+  .search-field {
+    flex-wrap: wrap;
+  }
+  .search-field input[type="text"] {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .search-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search-filters select {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+select#category-field {
+  background: linear-gradient(to bottom, #ffffff, #A1C7E0);
+  border-radius: 20px;
+}
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 2px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+.form-check-input[type="radio"] {
+  margin-top: 0.3rem;
+  margin-right: 0.25rem;
+  margin-left: 0;
+  width: 1.3em;
+  height: 1.3em;
+  background-origin: border-box;
+  border: 1px solid #adb5bd;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-check-input[type="radio"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.form-check-input[type="radio"]:checked:after {
+  position: absolute;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.form-check-input[type="radio"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+#search-field {
+  background: linear-gradient(to bottom, #ffffff, #A1C7E0);
+  border-radius: 20px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+</style>
+
+{% endblock %}
+    <h1 text>Offres d'emploi en Tunisie</h1>
+   <h5 style="text-align: right">{{ nbDisponibles }} offres d'emploi</h5>
+
+       <div class="search-filters">
+                        <div class="search-filter-item">
+                        </div>
+                        <div class="search-filter-item">
+                            {{ form_start(form, {'attr': {'onsubmit': 'return true;'}}) }}
+                            <div class=".search-container input">
+                                <div class="search-field">
+                                    {{ form_widget(form.search, {'attr': {'class': 'form-control mr-sm-2', 'aria-label': 'Search'}, 'onkeyup': 'submitForm()', 'id': 'search-field'}) }}
+                                    {{ form_widget(form.categorie, {'attr': {'class': 'form-control mr-sm-2', 'aria-label': 'Category'}, 'onchange': 'submitForm()', 'id': 'category-field' }) }}
+                                    {{ form_end(form) }}
+                                </div>
+                                <script>
+                                    const searchField = document.getElementById('search-field');
+                                    const categoryField = document.getElementById('category-field');
+
+                                    searchField.addEventListener('input', () => {
+                                        submitForm();
+                                    });
+
+                                    categoryField.addEventListener('change', () => {
+                                        submitForm();
+                                    });
+
+                                    function submitForm() {
+                                        document.forms[0].submit();
+                                    }
+                                </script>
+                            </div>
+                            <form method="get" action="{{ path('showDispoOffres') }}">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tri" id="tri-dc"
+                                        value="dc"{{ app.request.query.get('tri') == 'dc' ? ' checked' : '' }}>
+                                    <label class="form-check-label" for="tri-dc">Date de création</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tri" id="tri-dl"
+                                        value="dl"{{ app.request.query.get('tri') == 'dl' ? ' checked' : '' }}>
+                                    <label class="form-check-label" for="tri-dl">Date limite</label>
+                                </div>
+                                <button type="submit" class="btn ">
+                                    <i class="fas fa-sort"
+                                        style="background: linear-gradient(to bottom, #ffffff, #A1C7E0); border-radius: 50%; padding: 5px;"></i>
+                                </button>
+                                
+                            </form>
+                        </div>
+                    </div>           
+    <div class="card-deck">
+        {% for offre in pagination %}
+        {% if offre.statut == 'ACCEPTED' %}
+                         <a href="{{ path('offres_free_show', {'offre': offre.id})}}">           
+                      <div class="card mx-auto text-center mb-3 mt-5" style="max-width: 700px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('Images/' ~ offre.logoPath) }}" class="card-img" alt="Offre image"></a>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                              <h5 class="card-header d-flex justify-content-between align-items-center">
+  <span>{{ offre.titre }}</span>
+<button type="button" class="btn btn ml-auto" onclick="sauvegarderOffre({{ offre.id }})">
+    <i id="icon-{{ offre.id }}" class="far fa-bookmark px-1"></i>
+  </button>
+</h5>
+<script>
+  function sauvegarderOffre(idOffre) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', `/${idOffre}/savedOffres`, true,false);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        if (xhr.responseText === 'removed') {
+          alert('Offre retirée de vos favoris!');
+          document.getElementById('icon-'+idOffre).classList.remove('fas');
+          document.getElementById('icon-'+idOffre).classList.add('far');
+        } else {
+          alert('Offre sauvegardée dans vos favoris!');
+          document.getElementById('icon-'+idOffre).classList.remove('far');
+          document.getElementById('icon-'+idOffre).classList.add('fas');
+        }
+      } else {
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+      }
+    };
+    xhr.send('id=' + idOffre);
+  }
+</script>
+
+
+                                            <p class="card-text"><strong>Description:</strong> {{ offre.description|slice(0, 20) ~ '...' }}</p>
+                                            <p class="card-text"><strong>Date limite :</strong> {{ offre.dl|date('d/m/Y') }}</p>
+                                            <p class="card-text"><strong>Catégorie:</strong> {{ offre.categorie}}</p>
+                            <p class="card-text">
+                        {% if offre.dc >= (now|date_modify('-4 days')) %}
+                            <span class="badge bg-info text-dark">Nouveau  <i class="far fa-laugh text-black px-1"></i></span>
+                          {% endif %}
+                        <small class="text-muted">postulé il y'a {{ offre.getDaysSinceCreated() }}</small>
+                          </p>   
+                         <a href="{{ path('offres_free_show', {'offre': offre.id}) }}" class="btn btn-primary" >Postuler facilement</a>
+                       
+                              </div>
+                            </div>
+                          </div>
+                        </div>   
+              {% endif %}
+        {% endfor %}
+    </div>
+<div class="pagination">
+  {% set currentPage = pagination.getCurrentPageNumber() %}
+  {% set totalPages = pagination.getTotalItemCount() / pagination.getItemNumberPerPage()|round(0, 'ceil') %}
+  
+  {% if currentPage > 1 %}
+    <a href="{{ path('showDispoOffres', { page: currentPage - 1 }) }}" class="page-link"> <i class="fas fa-angle-left text-blue px-3"></i> Page Précédente</a>
+  {% endif %}
+  
+  {% if currentPage < totalPages %}
+    <a href="{{ path('showDispoOffres', { page: currentPage + 1 }) }}" class="page-link">Page Suivante <i class="fas fa-angle-right text-blue px-3"></i></a>
+  {% endif %}
+</div>
+
+</div>
+{% endblock %}

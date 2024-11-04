@@ -1,0 +1,21 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Offres acceptées{% endblock %}
+{% block content %}
+
+  <h1>Liste des offres acceptées</h1>
+  {% if offres is empty %}
+    <p>Aucune offre acceptée pour le moment.</p>
+  {% else %}
+    <ul>
+      {% for offre in offres %}
+        <li>
+          <h2>{{ offre.titre }}</h2>
+          <p>{{ offre.description }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <a href="{{ path('showOffresAdmin') }}" class="btn btn-secondary">Retour à la liste</a>
+
+{% endblock %}

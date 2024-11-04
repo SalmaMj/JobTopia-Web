@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mon CV</h1>
+    <ul>
+        <li>Prénom: {{ data.firstName }}</li>
+        <li>Nom: {{ data.lastName }}</li>
+        <li>Email: {{ data.email }}</li>
+        <li>Téléphone: {{ data.telephone }}</li>
+        <li>Code postal: {{ data.codepostal }}</li>
+        <li>Ville: {{ data.ville }}</li>
+        {% if data.showMoreInfo %}
+        <li>Âge ou Date de naissance: {{ data.age }}</li>
+        <li>Situation familiale: {{ data.situation }}</li>
+        {% endif %}
+    </ul>
+{% endblock %}
